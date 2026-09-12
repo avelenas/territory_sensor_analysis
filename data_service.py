@@ -14,3 +14,8 @@ print()
 print(sectors)
 print("\n", sectors.shape)
 print("\n", type(sectors))
+
+print(sectors[0][0])
+print("\n", sectors[0][-1])
+print("\n", (sectors[-1][0]))
+print("\n", sectors[-1][-1])
