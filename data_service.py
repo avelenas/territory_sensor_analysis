@@ -15,7 +15,12 @@ print(sectors)
 print("\n", sectors.shape)
 print("\n", type(sectors))
 
-print(sectors[0][0])
-print("\n", sectors[0][-1])
-print("\n", (sectors[-1][0]))
-print("\n", sectors[-1][-1])
+print("cеверо-запад", sectors[0][0])
+print("\n", "cеверо-восток", sectors[0][-1])
+print("\n", "юго-запад", (sectors[-1][0]))
+print("\n", "юго-восток", sectors[-1][-1])
+
+
+# sectors[0][0][0][0] = 4648.21
+# print(data[0][0])
+# print("cеверо-запад", sectors[0][0])
