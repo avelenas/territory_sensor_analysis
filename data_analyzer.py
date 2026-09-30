@@ -3,6 +3,9 @@ import numpy as np
 from cleaner import clean_all_sectors
 
 def analyze_sector(sector: np.ndarray, sector_number: int) -> dict:
+    if np.isnan(sector).any():
+        return None
+
     min_temp = np.min(sector)
     max_temp = np.max(sector)
     mean_temp = np.mean(sector)
@@ -19,12 +22,13 @@ def analyze_sector(sector: np.ndarray, sector_number: int) -> dict:
 
 def process_data_sectors(all_sectors: np.ndarray) -> None:
     results = []
-    sector_number = 0
+    sector_number = 1
 
     for row in all_sectors:
         for sector in row:
             result = analyze_sector(sector, sector_number)
-            results.append(result)
+            if result is not None:
+                results.append(result)
             sector_number += 1
 
     with open("results/sectors_analysis.csv", "w", encoding="utf-8") as file:
@@ -37,12 +41,12 @@ def process_data_sectors(all_sectors: np.ndarray) -> None:
 
         for result in results:
             file.write(
-                f"{result["sector_index"]},"
-                f"{result["min_temp"]},"
-                f"{result["max_temp"]},"
-                f"{result["mean_temp"]},"
-                f"{result["median_temp"]},"
-                f"{result["temp_range"]}\n"
+                f"{result['sector_index']},"
+                f"{result['min_temp']:.2f},"
+                f"{result['max_temp']:.2f},"
+                f"{result['mean_temp']:.2f},"
+                f"{result['median_temp']:.2f},"
+                f"{result['temp_range']:.2f}\n"
             )
 
 if __name__ == "__main__":
